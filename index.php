@@ -44,6 +44,86 @@
 
   </form>
 
+  <?php
+    if(isset($_POST['Enviar'])){
+      setcookie('preferencias', 'true', strtotime('+2 hours'));
+
+      if(isset($_POST['deportes'])){
+        $deportes = $_POST['deportes'];
+
+        foreach($deportes as $deporte){
+          setcookie('deportes[]', $deporte, strtotime('+2 hours'));
+        }
+      }
+
+
+      if(isset($_POST['musica'])){
+        $musica = $_POST['musica'];
+
+        foreach($musica as $genero){
+          setcookie('musica[]', $genero, strtotime('+2 hours'));
+        }
+      }
+
+      if(isset($_POST['programacion'])){
+        $prog = $_POST['programacion'];
+
+        foreach($prog as $lenguaje){
+          setcookie('programacion[]', $lenguaje, strtotime('+2 hours'));
+        }
+      }
+
+      header('Location: index.php');
+      exit();
+    }
+
+    if(isset($_COOKIE['preferencias'])){
+      echo "<h2>Gustos del usuario</h2>";
+      echo "<hr>";
+
+
+      echo "<ul><li>Deportes:</li>";
+      if(isset($_COOKIE['deportes'])){
+        $deportes = $_COOKIE['deportes'];
+
+        echo "<ul>";
+        foreach($deportes as $deporte){
+          echo "<li> $deporte </li> ";
+        }
+        echo "</ul>";
+      } else {
+        echo "<ul><li>No le gusta ninguna</li></ul>";
+      }
+
+      echo "<li>Música:</li>";
+      if(isset($_COOKIE['musica'])){
+        $musica = $_COOKIE['musica'];
+
+        echo "<ul>";
+        foreach($musica as $genero){
+          echo "<li> $genero </li> ";
+        }
+        echo "</ul>";
+      } else {
+        echo "<ul><li>No le gusta ninguna</li></ul>";
+      }
+
+      echo "<li>Programación:</li>";
+      if(isset($_COOKIE['programacion'])){
+        $prog = $_COOKIE['programacion'];
+
+        echo "<ul>";
+        foreach($prog as $lenguaje){
+          echo " <li> $lenguaje </li> ";
+        }
+        echo "</ul>";
+      } else {
+        echo "<ul><li>No le gusta ninguna</li></ul>";
+      }
+      echo "</ul>";
+
+    }
+  ?>
 </body>
 
 </html>
