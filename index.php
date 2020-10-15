@@ -46,9 +46,12 @@
   </form>
 
   <?php
+    // Comprueba si se ha enviado el formulario
     if(isset($_POST['Enviar'])){
+      // Crear cookie para saber que se guardaron las preferencias
       setcookie('preferencias', 'true', strtotime('+2 hours'));
 
+      // Comprueba si se ha seleccionado algún deporte
       if(isset($_POST['deportes'])){
         $deportes = $_POST['deportes'];
 
@@ -57,7 +60,7 @@
         }
       }
 
-
+      // Comprueba si se ha seleccionado algún estilo de musica
       if(isset($_POST['musica'])){
         $musica = $_POST['musica'];
 
@@ -66,6 +69,7 @@
         }
       }
 
+      // Comprueba si se ha seleccionado algún lenguaje de programación
       if(isset($_POST['programacion'])){
         $prog = $_POST['programacion'];
 
@@ -74,15 +78,18 @@
         }
       }
 
+      // Se redirige a si mismo para recargar las Cookies
       header('Location: index.php');
       exit();
     }
 
+    // Comprueba si existe la Cookie de preferencias
     if(isset($_COOKIE['preferencias'])){
       echo "<h2>Gustos del usuario</h2>";
       echo "<hr>";
 
 
+      // Imprime las preferencias de deportes
       echo "<ul><li>Deportes:</li>";
       if(isset($_COOKIE['deportes'])){
         $deportes = $_COOKIE['deportes'];
@@ -96,6 +103,7 @@
         echo "<ul><li>No le gusta ninguna</li></ul>";
       }
 
+      // Imprime las preferencias de música
       echo "<li>Música:</li>";
       if(isset($_COOKIE['musica'])){
         $musica = $_COOKIE['musica'];
@@ -109,6 +117,7 @@
         echo "<ul><li>No le gusta ninguna</li></ul>";
       }
 
+      // Imprime las preferencias de lenguajes
       echo "<li>Programación:</li>";
       if(isset($_COOKIE['programacion'])){
         $prog = $_COOKIE['programacion'];
