@@ -9,6 +9,7 @@
 </head>
 
 <body>
+  <h1>Formulario de prefencias</h1>
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <fieldset>
       <legend>Deportes</legend>
