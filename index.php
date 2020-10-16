@@ -55,8 +55,8 @@
       if(isset($_POST['deportes'])){
         $deportes = $_POST['deportes'];
 
-        foreach($deportes as $deporte){
-          setcookie('deportes[]', $deporte, strtotime('+2 hours'));
+        for($i = 0; $i < count($deportes); $i++){
+          setcookie("deportes[$i]", $deportes[$i], strtotime('+2 hours'));
         }
       }
 
@@ -64,8 +64,8 @@
       if(isset($_POST['musica'])){
         $musica = $_POST['musica'];
 
-        foreach($musica as $genero){
-          setcookie('musica[]', $genero, strtotime('+2 hours'));
+        for($i = 0; $i < count($musica); $i++){
+          setcookie("musica[$i]", $musica[$i], strtotime('+2 hours'));
         }
       }
 
@@ -73,8 +73,8 @@
       if(isset($_POST['programacion'])){
         $prog = $_POST['programacion'];
 
-        foreach($prog as $lenguaje){
-          setcookie('programacion[]', $lenguaje, strtotime('+2 hours'));
+        for($i = 0; $i < count($prog); $i++){
+          setcookie("programacion[$i]", $prog[$i], strtotime('+2 hours'));
         }
       }
 
