@@ -1,3 +1,41 @@
+<?php
+    // Comprueba si se ha enviado el formulario
+  if(isset($_POST['Enviar'])){
+    // Crear cookie para saber que se guardaron las preferencias
+    setcookie('preferencias', 'true', strtotime('+2 hours'));
+
+    // Comprueba si se ha seleccionado algún deporte
+    if(isset($_POST['deportes'])){
+      $deportes = $_POST['deportes'];
+
+      for($i = 0; $i < count($deportes); $i++){
+        setcookie("deportes[$i]", $deportes[$i], strtotime('+2 hours'));
+      }
+    }
+
+    // Comprueba si se ha seleccionado algún estilo de musica
+    if(isset($_POST['musica'])){
+      $musica = $_POST['musica'];
+
+      for($i = 0; $i < count($musica); $i++){
+        setcookie("musica[$i]", $musica[$i], strtotime('+2 hours'));
+      }
+    }
+
+    // Comprueba si se ha seleccionado algún lenguaje de programación
+    if(isset($_POST['programacion'])){
+      $prog = $_POST['programacion'];
+
+      for($i = 0; $i < count($prog); $i++){
+        setcookie("programacion[$i]", $prog[$i], strtotime('+2 hours'));
+      }
+    }
+
+    // Se redirige a si mismo para recargar las Cookies
+    header('Location: index.php');
+    exit();
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,43 +84,6 @@
   </form>
 
   <?php
-    // Comprueba si se ha enviado el formulario
-    if(isset($_POST['Enviar'])){
-      // Crear cookie para saber que se guardaron las preferencias
-      setcookie('preferencias', 'true', strtotime('+2 hours'));
-
-      // Comprueba si se ha seleccionado algún deporte
-      if(isset($_POST['deportes'])){
-        $deportes = $_POST['deportes'];
-
-        for($i = 0; $i < count($deportes); $i++){
-          setcookie("deportes[$i]", $deportes[$i], strtotime('+2 hours'));
-        }
-      }
-
-      // Comprueba si se ha seleccionado algún estilo de musica
-      if(isset($_POST['musica'])){
-        $musica = $_POST['musica'];
-
-        for($i = 0; $i < count($musica); $i++){
-          setcookie("musica[$i]", $musica[$i], strtotime('+2 hours'));
-        }
-      }
-
-      // Comprueba si se ha seleccionado algún lenguaje de programación
-      if(isset($_POST['programacion'])){
-        $prog = $_POST['programacion'];
-
-        for($i = 0; $i < count($prog); $i++){
-          setcookie("programacion[$i]", $prog[$i], strtotime('+2 hours'));
-        }
-      }
-
-      // Se redirige a si mismo para recargar las Cookies
-      header('Location: index.php');
-      exit();
-    }
-
     // Comprueba si existe la Cookie de preferencias
     if(isset($_COOKIE['preferencias'])){
       echo "<h2>Gustos del usuario</h2>";
