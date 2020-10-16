@@ -1,6 +1,17 @@
 <?php
     // Comprueba si se ha enviado el formulario
   if(isset($_POST['Enviar'])){
+    // unset cookies
+    if (isset($_SERVER['HTTP_COOKIE'])) {
+      $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+      foreach($cookies as $cookie) {
+        $parts = explode('=', $cookie);
+        $name = trim($parts[0]);
+        setcookie($name, '', time()-1000);
+        setcookie($name, '', time()-1000, '/');
+      }
+    }
+
     // Crear cookie para saber que se guardaron las preferencias
     setcookie('preferencias', 'true', strtotime('+2 hours'));
 
